@@ -103,6 +103,15 @@ public class SongTest extends TestCase {
             song1.toStringHobby());
     }
     
+    public void testCompareTo() {
+        Song song2 = new Song("titleB", "artistB", "genreB", "2000");
+        Song song3 = new Song("titleC", "artistC", "genreC", "2000");
+        assertTrue(song2.compareTo(song3) < 0);
+        assertTrue(song2.compareTo(song1) > 0);
+        assertTrue(song2.compareTo(song2) == 0);
+        assertEquals(2, song3.compareTo(song1));
+    }
+    
     
     
     

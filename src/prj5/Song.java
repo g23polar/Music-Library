@@ -11,7 +11,7 @@ package prj5;
  * @version 2019.11.18
  *
  */
-public class Song<T> {
+public class Song implements Comparable<Song> {
     private String artistName;
     private String songTitle;
     private String releaseYear;
@@ -258,6 +258,11 @@ public class Song<T> {
         str.append(likeData[11]);
         
         return str.toString();
+    }
+
+    @Override
+    public int compareTo(Song otherSong) {
+        return this.getArtist().compareToIgnoreCase(otherSong.getArtist());
     }
 
 

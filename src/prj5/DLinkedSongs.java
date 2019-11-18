@@ -320,8 +320,27 @@ public class DLinkedSongs<T> {
      *
      * @return new DLListIterator object
      */
-    public Iterator<T> iterator() {
+    public DLListIterator<T> iterator() {
         return new DLListIterator<T>();
+    }
+    
+    public String toString() {
+        StringBuilder str = new StringBuilder("[");
+        DLListIterator<T> iter = iterator();
+        
+        if (iter.hasNext()) {
+            Node<T> curr = (Node<T>)iter.next();
+            while (curr != tail) {
+                str.append((curr).getData().toString());
+                if (iter.hasNext()) {
+                    str.append(", ");
+                }  
+                curr = curr.next();
+            }
+        }
+
+        str.append("]");
+        return str.toString();
     }
     
     
