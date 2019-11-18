@@ -31,7 +31,7 @@ public class Solver
         return songs;
     }
     
-    public void insertionSort2(DLinkedSongs songList, Comparator<Song> comp) {
+    public void insertionSort2(DLinkedSongs songList, TitleComparator comp) {
         DLinkedSongs cloneList = songList;
         Iterator oldIter = cloneList.iterator();
         Iterator sortedIter;
@@ -45,7 +45,7 @@ public class Solver
         oldIter.remove();
         
         while (oldIter.hasNext()) {
-            Song hold = (Song)oldIter.next();
+            Song temp = (Song)oldIter.next();
             oldIter.remove();
             
             sortedIter = songList.iterator();
@@ -55,12 +55,12 @@ public class Solver
                 
                 Song currentSorted = (Song)sortedIter.next();
                 
-                if (comp.compare(hold, currentSorted) > 0) {
+                if (comp.compareArtist(temp, currentSorted) > 0) {
                     break;
                 }
                 sortedCount++;
             }
-            songList.add(sortedCount - 1, hold);
+            songList.add(sortedCount - 1, temp);
             
         }
         

@@ -43,6 +43,7 @@ public class DLinkedSongs<T> {
         public DLListIterator()
         {
             current = head;
+            calledNext = false;
         }
 
         /**
@@ -67,6 +68,26 @@ public class DLinkedSongs<T> {
                 return current.getData();
             }
             throw new NoSuchElementException();
+        }
+        
+        /**
+         * Removes the last object returned with next() from the list
+         *
+         * @throws IllegalStateException
+         *             if next has not been called yet
+         *        and  if the element has already been removed
+         */
+        @Override
+        public void remove() {
+            if (calledNext) {
+                current.previous().setNext(current.next());
+                current.next().setPrevious(current.previous());
+                size--;
+                calledNext = false;
+            }
+            else {
+                throw new IllegalStateException("Next has not been called");
+            }
         }
     }
 
@@ -142,7 +163,7 @@ public class DLinkedSongs<T> {
     }
 
 
-    public DLinkedSongs(Reader reader) {
+    public DLinkedSongs() {
         init();
     }
 
@@ -320,13 +341,13 @@ public class DLinkedSongs<T> {
      *
      * @return new DLListIterator object
      */
-    public DLListIterator<T> iterator() {
-        return new DLListIterator<T>();
+    public DLListIterator<Song> iterator() {
+        return new DLListIterator<Song>();
     }
     
     public String toString() {
         StringBuilder str = new StringBuilder("[");
-        DLListIterator<T> iter = iterator();
+        DLListIterator<Song> iter = iterator();
         
         if (iter.hasNext()) {
             Node<T> curr = (Node<T>)iter.next();
