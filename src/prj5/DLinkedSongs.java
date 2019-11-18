@@ -6,6 +6,7 @@
 // -- Michael Beeson (mbeeson)
 package prj5;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import bag.Node;
@@ -134,6 +135,10 @@ public class DLinkedSongs<T> {
         {
             return data;
         }
+        
+        public void setData(T newData) {
+            data = newData;
+        }
     }
 
 
@@ -244,9 +249,57 @@ public class DLinkedSongs<T> {
         size++;
 
     }
-
-
-
+    
+    /**
+     * Sets the data of the node at the index to the data of its previous node
+     * This REMOVES the indexed node's data, for use in insertion sort which
+     * already holds an indexed node's data
+     * @param index the index of the node to change
+     */
+    private void setEntryToPrevious(int index) {
+        if (index < 1 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        
+        Node<T> oldNode;
+        
+        if (index == size) {
+            oldNode = tail;
+        } 
+        else {
+            oldNode = getNode(index);
+        }
+        Node<T> newNode = oldNode.previous();
+        
+        oldNode.setData(newNode.getData());
+        
+    }
+    
+    /**
+     * Insertion sort
+     */
+    public void insertionSort(Comparator<T> comp) {
+        int numSorted = 1;
+        //go until all are sorted
+        while (numSorted < size) {
+            T temp = getData(numSorted);
+            int i;
+            
+            for (i = numSorted; i > 0; i--) {
+                //if the temp value is smaller than the value at the index
+                if (comp.compare(temp,  getData(i - 1)) < 0) {
+                    //continue moving indexed values ahead one index
+                    setEntryToPrevious(i);
+                }
+                else {  //if temp is greater than the index,
+                        //it is in the proper space, break loop
+                    break;
+                }
+            }
+            //put the temp value in the correct index and increment numSorted
+            
+        }
+    }
 
     /**
      * Iterator method creates Iterator object
@@ -256,4 +309,6 @@ public class DLinkedSongs<T> {
     public Iterator<T> iterator() {
         return new DLListIterator<T>();
     }
+    
+    
 }

@@ -80,6 +80,22 @@ public class Song<T> {
     }
     
     /**
+     * get the hear student survey data
+     * @return the array of hear data based on majors, regions, and hobbies
+     */
+    public int[] getHearData() {
+        return hearData;
+    }
+    
+    /**
+     * get the like student survey data
+     * @return the array of like data based on majors, regions, and hobbies
+     */
+    public int[] getLikeData() {
+        return likeData;
+    }
+    
+    /**
      * add to the hear data array for the students given major, region,
      * and hobby.  a parameter of -1 represents the student hasnt heard it.
      * @param major
