@@ -7,6 +7,7 @@
 package prj5;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import bag.Node;
 
 /**
@@ -23,12 +24,123 @@ public class DLinkedSongs<T> {
     private int size;
     private Node<T> head;
     private Node<T> tail;
-    
-    
+
+    /**
+     * @author Nikolai Long (nikolai)
+     * @version Nov 18, 2019
+     *
+     * DLLIterator Class
+     */
+    private class DLListIterator<A> implements Iterator<T>
+    {
+        private Node<T> current;
+        private boolean calledNext;
+
+        /**
+         * DLListIterator constructor
+         */
+        public DLListIterator()
+        {
+            current = head;
+        }
+
+        /**
+         * hasNext method
+         * @return whether there is a next Node
+         */
+        public boolean hasNext()
+        {
+            return current.next().getData() != null;
+        }
+
+        /**
+         * next method, moves the iterator
+         * @return the song of the next node
+         */
+        public T next()
+        {
+            if (hasNext())
+            {
+                current = current.next();
+                calledNext = true;
+                return current.getData();
+            }
+            throw new NoSuchElementException();
+        }
+    }
+
+    /**
+     * @author Nikolai Long (nikolai)
+     * @version Nov 18, 2019
+     *
+     * Node Class
+     */
+    private static class Node<T>
+    {
+        private Node<T> next;
+        private Node<T> previous;
+        private T data;
+
+        /**
+         * Node constructor
+         * @param data song
+         */
+        public Node(T data)
+        {
+            this.data = data;
+        }
+
+        /**
+         * setNext method
+         * @param node to be set
+         */
+        public void setNext(Node<T> node)
+        {
+            next = node;
+        }
+
+        /**
+         * setPrevious method
+         * @param node to be set
+         */
+        public void setPrevious(Node<T> node)
+        {
+            previous = node;
+        }
+
+        /**
+         * next method
+         * @return the next node
+         */
+        public Node<T> next()
+        {
+            return next;
+        }
+
+        /**
+         * previous method
+         * @return the previous node
+         */
+        public Node<T> previous()
+        {
+            return previous;
+        }
+
+        /**
+         * getData method
+         * @return the data in the node
+         */
+        public T getData()
+        {
+            return data;
+        }
+    }
+
+
     public DLinkedSongs(Reader reader) {
         init();
     }
-    
+
     private void init() {
         head = new Node<T>(null);
         tail = new Node<T>(null);
@@ -36,23 +148,23 @@ public class DLinkedSongs<T> {
         tail.setPrevious(head);
         size = 0;
     }
-    
+
     public boolean isEmpty() {
         return (size() == 0);
     }
-    
+
     public int size() {
         return size;
     }
-    
+
     public void clear() {
         init();
     }
-    
+
     public boolean contains(T entry) {
-        return lastIndexOf(obj) != -1;
+        return lastIndexOf(entry) != -1;
     }
-    
+
     /**
      * returns the last index of a node that contains the element given
      * or -1 if there are no nodes
@@ -69,17 +181,17 @@ public class DLinkedSongs<T> {
         }
         return -1;
     }
-    
+
     public T getData(int index) {
         if (index < 0 || size() <= index) {
             throw new IndexOutOfBoundsException("No element exists at " 
                 + index);
         }
         else {
-        return getNode(index).getData();
+            return getNode(index).getData();
         }
     }
-    
+
     public Node<T> getNode(int index) {
         if (index < 0 || size() <= index) {
             throw new IndexOutOfBoundsException("No element exists at " 
@@ -91,7 +203,7 @@ public class DLinkedSongs<T> {
         }
         return curr;
     }
-    
+
     /**
      * Adds a node with the entry to the end of the list
      * @param newEntry the entry to add to the list
@@ -132,16 +244,16 @@ public class DLinkedSongs<T> {
         size++;
 
     }
-    
-    
-    
-    
+
+
+
+
     /**
      * Iterator method creates Iterator object
      *
      * @return new Iterator object
      */
-    public Iterator<E> iterator() {
-        return new DLListIterator<E>();
+    public Iterator<T> iterator() {
+        return new DLListIterator<T>();
     }
 }
