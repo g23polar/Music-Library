@@ -103,11 +103,22 @@ public class Song<T> {
      * @param hobby
      */
     public void addHear(int major, int region, int hobby) {
+        if (major < -1 || major > 3) {
+            throw new IllegalArgumentException("major must be between 0 & 3");
+        }
         if (major != -1) {
             hearData[major]++;
         }
+        
+        if (region < -1 || region > 3) {
+            throw new IllegalArgumentException("region must be between 0 & 3");
+        }
         if (region != -1) {
             hearData[region + 4]++;
+        }
+        
+        if (hobby < -1 || hobby > 3) {
+            throw new IllegalArgumentException("hobby must be between 0 & 3");
         }
         if (hobby != -1) {
             hearData[hobby + 8]++;
@@ -123,11 +134,22 @@ public class Song<T> {
      * @param hobby
      */
     public void addLike(int major, int region, int hobby) {
+        if (major < -1 || major > 3) {
+            throw new IllegalArgumentException("major must be between 0 & 3");
+        }
         if (major != -1) {
             likeData[major]++;
         }
+
+        if (region < -1 || region > 3) {
+            throw new IllegalArgumentException("region must be between 0 & 3");
+        }
         if (region != -1) {
             likeData[region + 4]++;
+        }
+
+        if (hobby < -1 || hobby > 3) {
+            throw new IllegalArgumentException("hobby must be between 0 & 3");
         }
         if (hobby != -1) {
             likeData[hobby + 8]++;
@@ -160,6 +182,7 @@ public class Song<T> {
      */
     public String toStringMajor() {
         StringBuilder str = new StringBuilder();
+        str.append(toString());
         
         str.append("\nHeard\nComp Sci:");
         str.append(hearData[0]);
@@ -187,23 +210,24 @@ public class Song<T> {
      */
     public String toStringRegion() {
         StringBuilder str = new StringBuilder();
+        str.append(toString());
         
         str.append("\nHeard\nNortheast:");
-        str.append(hearData[0]);
+        str.append(hearData[4]);
         str.append(" Southeast:");
-        str.append(hearData[1]);
+        str.append(hearData[5]);
         str.append(" Rest of US:");
-        str.append(hearData[2]);
+        str.append(hearData[6]);
         str.append(" Outside of US:");
-        str.append(hearData[3]);
+        str.append(hearData[7]);
         str.append("\nLikes\nNortheast:");
-        str.append(likeData[0]);
+        str.append(likeData[4]);
         str.append(" Southeast:");
-        str.append(likeData[1]);
+        str.append(likeData[5]);
         str.append(" Rest of US:");
-        str.append(likeData[2]);
+        str.append(likeData[6]);
         str.append(" Outside of US:");
-        str.append(likeData[3]);
+        str.append(likeData[7]);
         
         return str.toString();
     }
@@ -214,23 +238,24 @@ public class Song<T> {
      */
     public String toStringHobby() {
         StringBuilder str = new StringBuilder();
+        str.append(toString());
         
         str.append("\nHeard\nreading:");
-        str.append(hearData[0]);
+        str.append(hearData[8]);
         str.append(" art:");
-        str.append(hearData[1]);
+        str.append(hearData[9]);
         str.append(" sports:");
-        str.append(hearData[2]);
+        str.append(hearData[10]);
         str.append(" music:");
-        str.append(hearData[3]);
+        str.append(hearData[11]);
         str.append("\nLikes\nreading:");
-        str.append(likeData[0]);
+        str.append(likeData[8]);
         str.append(" art:");
-        str.append(likeData[1]);
+        str.append(likeData[9]);
         str.append(" sports:");
-        str.append(likeData[2]);
+        str.append(likeData[10]);
         str.append(" music:");
-        str.append(likeData[3]);
+        str.append(likeData[11]);
         
         return str.toString();
     }

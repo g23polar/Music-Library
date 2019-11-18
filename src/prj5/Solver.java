@@ -8,6 +8,9 @@
  */
 package prj5;
 
+import java.util.Comparator;
+import java.util.Iterator;
+
 /**
  * @author Nikolai Long (nikolai)
  * @version Nov 17, 2019
@@ -26,5 +29,40 @@ public class Solver
     public DLinkedSongs getSongs()
     {
         return songs;
+    }
+    
+    public void insertionSort2(DLinkedSongs songList, Comparator<Song> comp) {
+        DLinkedSongs cloneList = songList;
+        Iterator oldIter = cloneList.iterator();
+        Iterator sortedIter;
+        
+        if (!oldIter.hasNext()) {
+            return;
+        }
+        songList.clear();
+        //add first item to sort
+        songList.add(0, oldIter.next());
+        oldIter.remove();
+        
+        while (oldIter.hasNext()) {
+            Song hold = (Song)oldIter.next();
+            oldIter.remove();
+            
+            sortedIter = songList.iterator();
+            int sortedCount = 0;
+            
+            while (sortedIter.hasNext()) {
+                
+                Song currentSorted = (Song)sortedIter.next();
+                
+                if (comp.compare(hold, currentSorted) > 0) {
+                    break;
+                }
+                sortedCount++;
+            }
+            songList.add(sortedCount - 1, hold);
+            
+        }
+        
     }
 }

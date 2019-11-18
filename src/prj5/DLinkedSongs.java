@@ -276,8 +276,20 @@ public class DLinkedSongs<T> {
     }
     
     /**
-     * Insertion sort
+     * creates a cloned list.
      */
+    public DLinkedSongs<T> clone() {
+        DLinkedSongs<T> returnList = new DLinkedSongs<T>();
+        
+        Node<T> cloneHead = head;
+        returnList.head = cloneHead;
+        
+        return returnList;
+        
+    }
+    /**
+     * Insertion sort
+     *//*
     public void insertionSort(Comparator<T> comp) {
         int numSorted = 1;
         //go until all are sorted
@@ -299,12 +311,14 @@ public class DLinkedSongs<T> {
             //put the temp value in the correct index and increment numSorted
             
         }
-    }
+    }*/
+    
+    
 
     /**
      * Iterator method creates Iterator object
      *
-     * @return new Iterator object
+     * @return new DLListIterator object
      */
     public Iterator<T> iterator() {
         return new DLListIterator<T>();
