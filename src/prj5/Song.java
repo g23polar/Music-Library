@@ -1,10 +1,14 @@
-/**
- * 
- */
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those
+// who do.
+// -- Michael Beeson (mbeeson)
 package prj5;
 
 /**
- * @author SWAT Loaner
+ * @author Michael Beeson (mbeeson)
+ * @version 2019.11.18
  *
  */
 public class Song<T> implements Comparable<T> {
