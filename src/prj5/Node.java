@@ -58,7 +58,7 @@ private static class Node<T>
     
     /**
      * previous method
-     * @return the previous method
+     * @return the previous node
      */
     public Node<T> previous()
     {
@@ -67,7 +67,7 @@ private static class Node<T>
     
     /**
      * getData method
-     * @return the song in the node
+     * @return the data in the node
      */
     public T getData()
     {
