@@ -18,6 +18,10 @@ public class TitleComparator<T> implements Comparator<T> {
         return 0;
     }
     
+    public int compareArtist(Song song1, Song song2) {
+        return song1.getArtist().compareToIgnoreCase(song2.getArtist());
+    }
+    
     public int compareTitle(Song song1, Song song2) {
         return song1.getTitle().compareToIgnoreCase(song2.getTitle());
     }
