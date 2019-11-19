@@ -9,13 +9,38 @@ package prj5;
 import student.TestCase;
 
 public class SolverTest extends TestCase {
-    
+    private DLinkedSongs<Song> songs;
+    private Song song1;
+    private Song song2;
+    private Song song3;
+    private Song song4;
+    private Solver solver;
     
     /**
      * sets up the conditions for each test
      */
     public void setUp() {
+        songs = new DLinkedSongs<Song>();
+
+        song1 = new Song("AAA", "artistB", "genreC", "2004");
+        song2 = new Song("BBB", "artistC", "genreD", "2003");
+        song3 = new Song("CCC", "artistD", "genreA", "2002");
+        song4 = new Song("DDD", "artistA", "genreB", "2001");
+
+        songs.add(song1);
+        songs.add(song2);
+        songs.add(song3);
+        songs.add(song4);
         
+        solver = new Solver(songs);
+        
+    }
+    
+    @SuppressWarnings("rawtypes")
+    public void testInsertion() {
+        solver.insertionSort2(songs, new TitleComparator());
+        
+        assertEquals(song4, songs.getData(0));
     }
 
 }

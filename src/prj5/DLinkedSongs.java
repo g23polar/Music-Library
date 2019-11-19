@@ -218,7 +218,7 @@ public class DLinkedSongs<T> {
         }
     }
 
-    public Node<T> getNode(int index) {
+    private Node<T> getNode(int index) {
         if (index < 0 || size() <= index) {
             throw new IndexOutOfBoundsException("No element exists at " 
                 + index);
@@ -246,12 +246,14 @@ public class DLinkedSongs<T> {
      * @throws IllegalArgumentException if newEntry is null
      */
     public void add(int index, T newEntry) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
+        if (index > size) {
+            throw new IndexOutOfBoundsException(">size");
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("<0");
         }
         if (newEntry == null) {
-            throw new IllegalArgumentException("Cannot add null "
-                + "objects to a list");
+            throw new IllegalArgumentException();
         }
 
         Node<T> nodeAfter;
@@ -296,18 +298,6 @@ public class DLinkedSongs<T> {
         
     }
     
-    /**
-     * creates a cloned list.
-     */
-    public DLinkedSongs<T> clone() {
-        DLinkedSongs<T> returnList = new DLinkedSongs<T>();
-        
-        Node<T> cloneHead = head;
-        returnList.head = cloneHead;
-        
-        return returnList;
-        
-    }
     /**
      * Insertion sort
      *//*
