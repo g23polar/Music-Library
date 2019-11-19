@@ -20,49 +20,66 @@ import java.util.Iterator;
 public class Solver
 {
     private DLinkedSongs songs;
-    
+
     public Solver(DLinkedSongs songs)
     {
         this.songs = songs;
     }
-    
+
     public DLinkedSongs getSongs()
     {
         return songs;
     }
-    
-    public void insertionSort2(DLinkedSongs songList, TitleComparator comp) {
+
+    public void insertionSort(DLinkedSongs songList, int sortIndex) {
+        TitleComparator<Song> comp = new TitleComparator();
         Iterator oldIter = songList.iterator();
         Iterator sortedIter;
-        
+
         if (!oldIter.hasNext()) {
             return;
         }
         songList.clear();
         //add first item to sort
         songList.add(0, oldIter.next());
-        
+
         int sortedCount = 1;
-        
+
         while (oldIter.hasNext()) {
             Song hold = (Song)oldIter.next();
-            
+
             sortedIter = songList.iterator();
-            
-            int index = sortedCount;
+
+            int index = 0;
             while (sortedIter.hasNext()) {
-                
+
                 Song currentSorted = (Song)sortedIter.next();
-                
-                if (comp.compareArtist(currentSorted, hold) < 0) {
-                    break;
+                if (sortIndex == 0) {
+                    if (comp.compareTitle(currentSorted, hold) > 0) {
+                        break;
+                    }
+                }
+                if (sortIndex == 1) {
+                    if (comp.compareArtist(currentSorted, hold) > 0) {
+                        break;
+                    }
+                }
+                if (sortIndex == 2) {
+                    if (comp.compareGenre(currentSorted, hold) > 0) {
+                        break;
+                    }
+                }
+                if (sortIndex == 3) {
+                    if (comp.compareYear(currentSorted, hold) > 0) {
+                        break;
+                    }
                 }
                 index++;
             }
             songList.add(index, hold);
             sortedCount++;
-            
+
         }
-        
+
     }
 }
