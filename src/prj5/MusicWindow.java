@@ -1,5 +1,13 @@
 package prj5;
-
+/**
+ * Virginia Tech Honor Code Pledge:
+ * As a Hokie, I will conduct myself 
+ * with honor and integrity at all times.
+ * I will not lie, cheat, or steal, nor 
+ * will I accept the actions of those who do.
+ * @author Gautam Nair (g23)
+ * @version 2019.11.19
+ */
 import CS2114.Window;
 import java.awt.*;
 import CS2114.WindowSide;
@@ -14,21 +22,23 @@ public class MusicWindow {
     public Window window;
     private Solver solver;
 
+    
+    
     private TextShape[][] legendText; 
     // BUTTONS
     private Button[] buttonArray; // probably don't need this
 
-    //GLYPHS
-//    private Glyph[] glyphArray; 
+    private String[] hobbies = {"Read", "Art", "Sports", "Music"};
+    private String[] majors = {"Comp Sci", "Other Eng", "Math/CMDA", "Other"};
+    private String[] regions = {"Northeast", "Outside of United States", "United States (other than Southeast or Northwest)", "Southeast"};
     
-    private TextShape legend; 
-
-    private String[] hobbies;
-    private String[] majors;
-    private String[] regions;
-    
+    private String currentRep; 
     private DLinkedSongs songs; 
     
+    /**
+     * default constructor that initiaties the window
+     * @param solve the solver object that the window depicts
+     */
     public MusicWindow(Solver solve) {
         window = new Window();
         
@@ -79,14 +89,15 @@ public class MusicWindow {
             }
         }
         
-        hobbies = this.solver.getHobbies();
-        regions = this.solver.getRegions();
-        majors = this.solver.getMajors();
-        
+//        
         this.solver = solve;
         songs = solver.getSongs();
     }
         
+    /**
+     * change the legend of the window to represent how the songs are represented
+     * @param repr the word key that notifies which type
+     */
     public void updateLegend(String repr)
     {
         TextShape h1 = new TextShape(window.getGraphPanelWidth() * 8/10 + 35, window.getGraphPanelHeight()*5/10 + 117, "Heard", Color.BLACK);
@@ -161,8 +172,13 @@ public class MusicWindow {
         
     }
 
+    /**
+     * change all the glyphs on window 
+     * @param repr the type of representation
+     */
     public void updateGlyphs(String repr)
     {
+        currentRep = repr; 
         
         //BARS IN GLYPHS
         Shape tl = new Shape(window.getGraphPanelWidth() *15/100, window.getGraphPanelHeight() * 1/5, 5, 40, Color.BLACK);
@@ -186,55 +202,84 @@ public class MusicWindow {
         Shape br = new Shape(window.getGraphPanelWidth() *75/100, window.getGraphPanelHeight() * 4/5, 5, 40, Color.BLACK);
         window.addShape(br);
         
-        Song s = new Song("Gravity", "John Mayor", "Pop", "2003");
-
+        Song s1 = new Song("Gravity", "John Mayer", "Pop", "2003");
+        Song s2 = new Song("Boom Boom Pow", "The Black Eyed Peas", "Rock", "1997"); 
         
-        s.addHear(0, 0, 0);
-        s.addHear(0, 0, 1);
-        s.addHear(0, 0, 2);
-        s.addHear(0, 0, 3);
+        s2.addHear(1, 2, 3);
+        s2.addHear(3, 2, 1);
+        s2.addHear(3, 1, 2);
         
-        s.addLike(0, 0, 0);
-        s.addLike(0, 0, 1);
-        s.addLike(0, 0, 2);
-        s.addLike(0, 0, 3);
+        s2.addLike(1, 2, 3);
+        s2.addLike(3, 2, 1);
+        s2.addLike(3, 1, 2);
+        
+        s1.addHear(0, 0, 0);
+        s1.addHear(0, 0, 1);
+        s1.addHear(0, 0, 2);
+        s1.addHear(0, 0, 3);
+        
+        s1.addLike(0, 0, 0);
+        s1.addLike(0, 0, 1);
+        s1.addLike(0, 0, 2);
+        s1.addLike(0, 0, 3);
+        
         System.out.println("before add songs bars");
-        this.addLikeBars(s, Position.topLeft, repr);
-        this.addLikeBars(s, Position.topCenter, repr);
-        this.addLikeBars(s, Position.topRight, repr);
         
-        this.addLikeBars(s, Position.midCenter, repr);
-        this.addLikeBars(s, Position.midLeft, repr);
-        this.addLikeBars(s, Position.midRight, repr);
+        //LIKES
+        this.addLikeBars(s1, Position.topLeft, repr);
+        this.addLikeBars(s2, Position.topCenter, repr);
+        this.addLikeBars(s1, Position.topRight, repr);
         
-        this.addLikeBars(s, Position.bottomLeft, repr);
-        this.addLikeBars(s, Position.bottomCenter, repr);
-        this.addLikeBars(s, Position.bottomRight, repr);
+        this.addLikeBars(s1, Position.midCenter, repr);
+        this.addLikeBars(s1, Position.midLeft, repr);
+        this.addLikeBars(s1, Position.midRight, repr);
         
-        this.addHearBars(s, Position.topLeft, repr);
-        this.addHearBars(s, Position.topCenter, repr);
-        this.addHearBars(s, Position.topRight, repr);
+        this.addLikeBars(s1, Position.bottomLeft, repr);
+        this.addLikeBars(s1, Position.bottomCenter, repr);
+        this.addLikeBars(s1, Position.bottomRight, repr);
+
+        //HEARS
+        this.addHearBars(s1, Position.topLeft, repr);
+        this.addHearBars(s2, Position.topCenter, repr);
+        this.addHearBars(s1, Position.topRight, repr);
         
-        this.addHearBars(s, Position.midCenter, repr);
-        this.addHearBars(s, Position.midLeft, repr);
-        this.addHearBars(s, Position.midRight, repr);
+        this.addHearBars(s1, Position.midCenter, repr);
+        this.addHearBars(s1, Position.midLeft, repr);
+        this.addHearBars(s1, Position.midRight, repr);
         
-        this.addHearBars(s, Position.bottomLeft, repr);
-        this.addHearBars(s, Position.bottomCenter, repr);
-        this.addHearBars(s, Position.bottomRight, repr);
+        this.addHearBars(s1, Position.bottomLeft, repr);
+        this.addHearBars(s1, Position.bottomCenter, repr);
+        this.addHearBars(s1, Position.bottomRight, repr);
         
-        this.addSongText(s, Position.topLeft);
-        this.addSongText(s, Position.topCenter);
-        this.addSongText(s, Position.topRight);
-        this.addSongText(s, Position.midCenter);
-        this.addSongText(s, Position.midLeft);
-        this.addSongText(s, Position.midRight);
-        this.addSongText(s, Position.bottomCenter);
-        this.addSongText(s, Position.bottomLeft);
-        this.addSongText(s, Position.bottomRight);
+        //TEXTBOX
+        this.addSongText(s1, Position.topLeft);
+        this.addSongText(s2, Position.topCenter);
+        this.addSongText(s1, Position.topRight);
+        this.addSongText(s1, Position.midCenter);
+        this.addSongText(s1, Position.midLeft);
+        this.addSongText(s1, Position.midRight);
+        this.addSongText(s1, Position.bottomCenter);
+        this.addSongText(s1, Position.bottomLeft);
+        this.addSongText(s1, Position.bottomRight);
     }
 
-
+    /**
+     * clicked the next button method
+     * @param button tag
+     */
+    public void clickedNext(Button button)
+    {
+    }
+    
+    /**
+     * clicked the previous button
+     * @param button tag
+     */
+    public void clickedPrevious(Button button)
+    {
+        
+    }
+    
     private void addHearBars(Song s, Position pos, String repr) 
     {
         Glyph glyph = new Glyph(s, repr, pos);
@@ -346,100 +391,6 @@ public class MusicWindow {
         
     }
 
-    public void clickedNext(Button button)
-    {
-    }
-    public void clickedPrevious(Button button)
-    {
-        
-    }
-    
-    
-    
-    private void addSongText(Song<?> song, Position pos)
-    {
-        String name = song.getName();
-        String artist = song.getArtist();
-        TextShape nameText = null; 
-        TextShape artistText = null; 
-        switch (pos)
-        {
-            case bottomCenter:
-                nameText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 4/5 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 4/5 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-            case bottomLeft:
-                nameText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 4/5 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 4/5 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-            case bottomRight:
-                nameText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 4/5 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 4/5 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-                
-            case midCenter:
-                nameText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/2 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/2 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-            case midLeft:
-                nameText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/2 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/2 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-            case midRight:
-                nameText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/2 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/2 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-            case topCenter:
-                nameText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/5 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/5 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-            case topLeft:
-                nameText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/5 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/5 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                
-                break;
-            case topRight:
-                nameText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/5 - 40, name, Color.BLACK);
-                nameText.setBackgroundColor(null);
-                
-                artistText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/5 - 20, "by " + artist, Color.BLACK); 
-                artistText.setBackgroundColor(null);
-                break;
-            default:
-                break;
-            
-        }
-        
-        window.addShape(nameText);
-        window.addShape(artistText);
-        
-    }
-    
-
     private void addLikeBars(Song<?> song, Position pos, String repr)
     {
         Glyph glyph = new Glyph(song, repr, pos);
@@ -545,6 +496,89 @@ public class MusicWindow {
         window.addShape(bars[7]);
     }
     
+    private void addSongText(Song<?> song, Position pos)
+    {
+        String name = song.getName();
+        String artist = song.getArtist();
+        TextShape nameText = null; 
+        TextShape artistText = null; 
+        switch (pos)
+        {
+            case bottomCenter:
+                nameText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 4/5 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 4/5 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+            case bottomLeft:
+                nameText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 4/5 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 4/5 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+            case bottomRight:
+                nameText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 4/5 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 4/5 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+                
+            case midCenter:
+                nameText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/2 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/2 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+            case midLeft:
+                nameText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/2 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/2 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+            case midRight:
+                nameText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/2 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/2 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+            case topCenter:
+                nameText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/5 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *45/100 - 25, window.getGraphPanelHeight() * 1/5 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+            case topLeft:
+                nameText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/5 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *15/100 - 25, window.getGraphPanelHeight() * 1/5 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                
+                break;
+            case topRight:
+                nameText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/5 - 40, name, Color.BLACK);
+                nameText.setBackgroundColor(null);
+                
+                artistText = new TextShape(window.getGraphPanelWidth() *75/100 - 25, window.getGraphPanelHeight() * 1/5 - 20, "by " + artist, Color.BLACK); 
+                artistText.setBackgroundColor(null);
+                break;
+            default:
+                break;
+            
+        }
+        
+        window.addShape(nameText);
+        window.addShape(artistText);
+        
+    }
+    
     public void clickedHobby(Button button)
     {
         window.removeAllShapes();
@@ -566,8 +600,9 @@ public class MusicWindow {
     
     public void clickedArtist(Button button)
     {
-        DLinkedSongs songs = this.solver.getSongs();
-        songs.sort(); // add artist param 
+        songs = this.solver.getSongs();
+//        songs.sort(); // add artist param
+        this.updateGlyphs(currentRep);
     }
     public void clickedTitle(Button button)
     {
@@ -581,9 +616,18 @@ public class MusicWindow {
     {
         
     }
+    
     public void clickedQuit(Button button)
     {
         System.exit(0);
     }
+    
+//    
+//    {
+//        int length = songs.size();
+//        int[][] pt = new int[length][9];
+//        int x = 9;
+//        int page = x%9 != 0 ? x/9 : x/9 - 1;
+//    }
     
 }
