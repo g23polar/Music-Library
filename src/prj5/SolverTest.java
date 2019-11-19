@@ -8,6 +8,12 @@ package prj5;
 
 import student.TestCase;
 
+/**
+ * Tests the methods of the Solver class.
+ * @author Michael Beeson (mbeeson)
+ * @version 2019.11.18
+ *
+ */
 public class SolverTest extends TestCase {
     private DLinkedSongs<Song> songs;
     private Song song1;
@@ -35,7 +41,17 @@ public class SolverTest extends TestCase {
         solver = new Solver(songs);
 
     }
+    
+    /**
+     * tests the getSongs() method.
+     */
+    public void testGetSongs() {
+        assertEquals(songs, solver.getSongs());
+    }
 
+    /**
+     * tests the insertionSort for all 4 sorting methods.
+     */
     public void testInsertion() {
         solver.insertionSort(songs, 1);
 

@@ -8,6 +8,12 @@ package prj5;
 
 import student.TestCase;
 
+/**
+ * Tests the methods of the Song class.
+ * @author Michael Beeson (mbeeson)
+ * @version 2019.11.18
+ *
+ */
 public class SongTest extends TestCase {
     
     private Song song1;
@@ -19,6 +25,9 @@ public class SongTest extends TestCase {
         song1 = new Song("titleA", "artistA", "genreA", "2000");
     }
     
+    /**
+     * tests the getter methods.
+     */
     public void testGetters() {
         assertEquals("titleA", song1.getTitle());
         assertEquals("artistA", song1.getArtist());
@@ -26,6 +35,9 @@ public class SongTest extends TestCase {
         assertEquals("2000", song1.getYear());
     }
     
+    /**
+     * tests the addHear method.
+     */
     public void testAddHear() {
         song1.addHear(0, 1, 2);
         assertEquals(1, song1.getNumStudents());
@@ -43,6 +55,9 @@ public class SongTest extends TestCase {
         assertEquals(0, song1.getHearData()[11]);
     }
     
+    /**
+     * tests the addLike method.
+     */
     public void testAddLike() {
         song1.addLike(3, 2, 0);
         assertEquals(1, song1.getNumStudents());
@@ -59,12 +74,18 @@ public class SongTest extends TestCase {
         assertEquals(0, song1.getLikeData()[10]);
         assertEquals(0, song1.getLikeData()[11]);
     }
-    
+   
+    /**
+     * tests the toString method.
+     */
     public void testToString() {
         assertEquals("Song Title: titleA\nSong Artist: artistA\nSong Genre: "
             + "genreA\nSong Year: 2000", song1.toString());
     }
     
+    /**
+     * tests the toStringMajor method.
+     */
     public void testToStringMajor() {
         song1.addHear(0, 1, 2);
         song1.addLike(-1, -1, -1);
@@ -77,6 +98,9 @@ public class SongTest extends TestCase {
             song1.toStringMajor());
     }
     
+    /**
+     * tests the toStringRegion method.
+     */
     public void testToStringRegion() {
         song1.addHear(0, 1, 2);
         song1.addLike(-1, -1, -1);
@@ -90,6 +114,9 @@ public class SongTest extends TestCase {
             song1.toStringRegion());
     }
     
+    /**
+     * tests the toStringHobby method.
+     */
     public void testToStringHobby() {
         song1.addHear(0, 1, 2);
         song1.addLike(-1, -1, -1);
@@ -103,6 +130,9 @@ public class SongTest extends TestCase {
             song1.toStringHobby());
     }
     
+    /**
+     * tests the compareTo method.
+     */
     public void testCompareTo() {
         Song song2 = new Song("titleB", "artistB", "genreB", "2000");
         Song song3 = new Song("titleC", "artistC", "genreC", "2000");

@@ -32,7 +32,7 @@ public class Solver
     }
 
     public void insertionSort(DLinkedSongs songList, int sortIndex) {
-        TitleComparator<Song> comp = new TitleComparator();
+        SongComparator<Song> comp = new SongComparator();
         Iterator oldIter = songList.iterator();
         Iterator sortedIter;
 

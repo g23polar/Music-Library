@@ -10,6 +10,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import student.TestCase;
 
+/**
+ * Tests the methods of the DLinkedSongs class.
+ * @author Michael Beeson (mbeeson)
+ * @version 2019.11.18
+ *
+ */
 public class DLinkedSongsTest extends TestCase {
 
     private DLinkedSongs<Song> songs;
@@ -17,6 +23,7 @@ public class DLinkedSongsTest extends TestCase {
     private Song song2;
     private Song song3;
     private Song song4;
+    
     /**
      * sets up the conditions for each test
      */
@@ -34,6 +41,9 @@ public class DLinkedSongsTest extends TestCase {
         songs.add(song4);
     }
 
+    /**
+     * tests the iterator and its methods.
+     */
     public void testIterator() {
         Exception exception = null;
         Iterator iter = songs.iterator();
@@ -62,12 +72,18 @@ public class DLinkedSongsTest extends TestCase {
         assertTrue(exception instanceof NoSuchElementException);
     }
 
+    /**
+     * tests the clear and init methods
+     */
     public void testClearAndInit() {
         assertFalse(songs.isEmpty());
         songs.clear();
         assertTrue(songs.isEmpty());
     }
 
+    /**
+     * tests the size method
+     */
     public void testSize() {
         assertEquals(4, songs.size());
         songs.add(song1);
@@ -79,6 +95,9 @@ public class DLinkedSongsTest extends TestCase {
         assertEquals(4, songs.size());
     }
 
+    /**
+     * tests the lastIndexOf method
+     */
     public void testLastIndexOf() {
         Song song5 = new Song("DDD", "artistA", "genreB", "2001");
 
@@ -89,6 +108,9 @@ public class DLinkedSongsTest extends TestCase {
 
     }
 
+    /**
+     * tests the getData method
+     */
     public void testGetData() {
         assertEquals(song2, songs.getData(1));
         Exception exception = null;
@@ -101,6 +123,9 @@ public class DLinkedSongsTest extends TestCase {
         assertTrue(exception instanceof IndexOutOfBoundsException);
     }
 
+    /**
+     * tests the add(T) and add(int, T) methods
+     */
     public void testAdd() {
         assertEquals(3, songs.lastIndexOf(song4));
         songs.add(song4);
@@ -136,6 +161,10 @@ public class DLinkedSongsTest extends TestCase {
         assertEquals(2, songs.lastIndexOf(song1));
     }
     
+    /**
+     * tests the iterator after the list it was based on has been cleared
+     * for use in the insertion sort as a copy.
+     */
     public void testIterator2() {
         Iterator iter = songs.iterator();
         assertTrue(iter.hasNext());

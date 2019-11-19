@@ -9,6 +9,7 @@
 package prj5;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -30,7 +31,6 @@ public class Reader
         songs = readSongs(songFile);
         readSurvey(surveyFile);
         Solver solv = new Solver(songs);
-        Window win = new Window(solv);
     }
     
     /**
@@ -38,8 +38,9 @@ public class Reader
      * songs in the file
      * @param songFile data file
      * @return songs DLL
+     * @throws FileNotFoundException 
      */
-    public DLkinedSongs readSongs(String songFile)
+    public DLinkedSongs readSongs(String songFile) throws FileNotFoundException
     {
         DLinkedSongs songs = new DLinkedSongs();
         File file = new File(songFile);
@@ -49,13 +50,11 @@ public class Reader
         {
             scan.hasNextLine();
         }
-        int index = 0;
         while (scan.hasNext())
         {
             strings = scan.nextLine().split(",");
-            songs[index] = new Song(strings[0], strings[1],
-                strings[2], strings[3]);
-            index++;
+            songs.add(new Song(strings[0], strings[1], 
+                strings[2], strings[3]));
         }
         return songs;
     }
@@ -67,7 +66,7 @@ public class Reader
      */
     public void readSurvey(String surveyFile)
     {
-        if (songs = null)
+        if (songs == null)
         {
             throw new IllegalStateException();
         }

@@ -11,7 +11,7 @@ import java.util.Comparator;
  * Class that implements Comparator<T> to compare song objects in various 
  * ways
  */
-public class TitleComparator<T> implements Comparator<T> {
+public class SongComparator<T> implements Comparator<T> {
 
     @Override
     public int compare(T arg0, T arg1) {
