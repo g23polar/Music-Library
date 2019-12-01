@@ -17,7 +17,7 @@ import CS2114.CircleShape;
 import CS2114.Command;
 import CS2114.Shape;
 import CS2114.TextShape;
-public class MusicWindow {
+public class GUIMusicWindow {
 
     public Window window;
     private Solver solver;
@@ -32,6 +32,8 @@ public class MusicWindow {
     private String[] majors = {"Comp Sci", "Other Eng", "Math/CMDA", "Other"};
     private String[] regions = {"Northeast", "Outside of United States", "United States (other than Southeast or Northwest)", "Southeast"};
     
+    private int page; 
+    
     private String currentRep; 
     private DLinkedSongs songs; 
     
@@ -39,9 +41,9 @@ public class MusicWindow {
      * default constructor that initiaties the window
      * @param solve the solver object that the window depicts
      */
-    public MusicWindow(Solver solve) {
+    public GUIMusicWindow(Solver solve) {
         window = new Window();
-        
+        page = 1; 
         window.setTitle("Project 5");
         this.buttonArray = new Button[10];
         Button artistButton = new Button("Sort by Artist Name");
@@ -138,7 +140,7 @@ public class MusicWindow {
             window.addShape(legendText[0][3]);
             window.addShape(legendText[0][4]);
         }
-        if (repr == "major")
+        if (repr == "major") 
         {
             window.addShape(legendText[1][0]);
             window.addShape(legendText[1][1]);
@@ -202,66 +204,7 @@ public class MusicWindow {
         Shape br = new Shape(window.getGraphPanelWidth() *75/100, window.getGraphPanelHeight() * 4/5, 5, 40, Color.BLACK);
         window.addShape(br);
         
-        Song s1 = new Song("Gravity", "John Mayer", "Pop", "2003");
-        Song s2 = new Song("Boom Boom Pow", "The Black Eyed Peas", "Rock", "1997"); 
-        
-        s2.addHear(1, 2, 3);
-        s2.addHear(3, 2, 1);
-        s2.addHear(3, 1, 2);
-        
-        s2.addLike(1, 2, 3);
-        s2.addLike(3, 2, 1);
-        s2.addLike(3, 1, 2);
-        
-        s1.addHear(0, 0, 0);
-        s1.addHear(0, 0, 1);
-        s1.addHear(0, 0, 2);
-        s1.addHear(0, 0, 3);
-        
-        s1.addLike(0, 0, 0);
-        s1.addLike(0, 0, 1);
-        s1.addLike(0, 0, 2);
-        s1.addLike(0, 0, 3);
-        
-        System.out.println("before add songs bars");
-        
-        //LIKES
-        this.addLikeBars(s1, Position.topLeft, repr);
-        this.addLikeBars(s2, Position.topCenter, repr);
-        this.addLikeBars(s1, Position.topRight, repr);
-        
-        this.addLikeBars(s1, Position.midCenter, repr);
-        this.addLikeBars(s1, Position.midLeft, repr);
-        this.addLikeBars(s1, Position.midRight, repr);
-        
-        this.addLikeBars(s1, Position.bottomLeft, repr);
-        this.addLikeBars(s1, Position.bottomCenter, repr);
-        this.addLikeBars(s1, Position.bottomRight, repr);
-
-        //HEARS
-        this.addHearBars(s1, Position.topLeft, repr);
-        this.addHearBars(s2, Position.topCenter, repr);
-        this.addHearBars(s1, Position.topRight, repr);
-        
-        this.addHearBars(s1, Position.midCenter, repr);
-        this.addHearBars(s1, Position.midLeft, repr);
-        this.addHearBars(s1, Position.midRight, repr);
-        
-        this.addHearBars(s1, Position.bottomLeft, repr);
-        this.addHearBars(s1, Position.bottomCenter, repr);
-        this.addHearBars(s1, Position.bottomRight, repr);
-        
-        //TEXTBOX
-        this.addSongText(s1, Position.topLeft);
-        this.addSongText(s2, Position.topCenter);
-        this.addSongText(s1, Position.topRight);
-        this.addSongText(s1, Position.midCenter);
-        this.addSongText(s1, Position.midLeft);
-        this.addSongText(s1, Position.midRight);
-        this.addSongText(s1, Position.bottomCenter);
-        this.addSongText(s1, Position.bottomLeft);
-        this.addSongText(s1, Position.bottomRight);
-    }
+            }
 
     /**
      * clicked the next button method
@@ -280,7 +223,13 @@ public class MusicWindow {
         
     }
     
-    private void addHearBars(Song s, Position pos, String repr) 
+    /**
+     * add the hear bars
+     * @param s song
+     * @param pos position
+     * @param repr the type of representation
+     */
+    private void addHearBars(Song s, GUIPositionEnum pos, String repr) 
     {
         Glyph glyph = new Glyph(s, repr, pos);
         Shape [] bars = glyph.getBars();
@@ -391,7 +340,7 @@ public class MusicWindow {
         
     }
 
-    private void addLikeBars(Song<?> song, Position pos, String repr)
+    private void addLikeBars(Song<?> song, GUIPositionEnum pos, String repr)
     {
         Glyph glyph = new Glyph(song, repr, pos);
         Shape [] bars = glyph.getBars();
@@ -496,7 +445,7 @@ public class MusicWindow {
         window.addShape(bars[7]);
     }
     
-    private void addSongText(Song<?> song, Position pos)
+    private void addSongText(Song<?> song, GUIPositionEnum pos)
     {
         String name = song.getName();
         String artist = song.getArtist();
@@ -621,13 +570,5 @@ public class MusicWindow {
     {
         System.exit(0);
     }
-    
-//    
-//    {
-//        int length = songs.size();
-//        int[][] pt = new int[length][9];
-//        int x = 9;
-//        int page = x%9 != 0 ? x/9 : x/9 - 1;
-//    }
     
 }
