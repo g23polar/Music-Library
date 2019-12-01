@@ -288,15 +288,13 @@ public class GUIMusicWindow {
 
         System.out.println("before add songs bars");
 
-        this.addLikeBars((Song)songs.getData(0), GUIPositionEnum.topLeft,
-            repr);
+        this.addLikeBars((Song)songs.getData(0), GUIPositionEnum.topLeft, repr);
         this.addLikeBars((Song)songs.getData(1), GUIPositionEnum.topCenter,
             repr);
         this.addLikeBars((Song)songs.getData(2), GUIPositionEnum.topRight,
             repr);
 
-        this.addLikeBars((Song)songs.getData(3), GUIPositionEnum.midLeft,
-            repr);
+        this.addLikeBars((Song)songs.getData(3), GUIPositionEnum.midLeft, repr);
         this.addLikeBars((Song)songs.getData(4), GUIPositionEnum.midCenter,
             repr);
         this.addLikeBars((Song)songs.getData(5), GUIPositionEnum.midRight,
@@ -304,20 +302,18 @@ public class GUIMusicWindow {
 
         this.addLikeBars((Song)songs.getData(6), GUIPositionEnum.bottomLeft,
             repr);
-        this.addLikeBars((Song)songs.getData(7),
-            GUIPositionEnum.bottomCenter, repr);
+        this.addLikeBars((Song)songs.getData(7), GUIPositionEnum.bottomCenter,
+            repr);
         this.addLikeBars((Song)songs.getData(8), GUIPositionEnum.bottomRight,
             repr);
 
-        this.addHearBars((Song)songs.getData(0), GUIPositionEnum.topLeft,
-            repr);
+        this.addHearBars((Song)songs.getData(0), GUIPositionEnum.topLeft, repr);
         this.addHearBars((Song)songs.getData(1), GUIPositionEnum.topCenter,
             repr);
         this.addHearBars((Song)songs.getData(2), GUIPositionEnum.topRight,
             repr);
 
-        this.addHearBars((Song)songs.getData(3), GUIPositionEnum.midLeft,
-            repr);
+        this.addHearBars((Song)songs.getData(3), GUIPositionEnum.midLeft, repr);
         this.addHearBars((Song)songs.getData(4), GUIPositionEnum.midCenter,
             repr);
         this.addHearBars((Song)songs.getData(5), GUIPositionEnum.midRight,
@@ -325,8 +321,8 @@ public class GUIMusicWindow {
 
         this.addHearBars((Song)songs.getData(6), GUIPositionEnum.bottomLeft,
             repr);
-        this.addHearBars((Song)songs.getData(7),
-            GUIPositionEnum.bottomCenter, repr);
+        this.addHearBars((Song)songs.getData(7), GUIPositionEnum.bottomCenter,
+            repr);
         this.addHearBars((Song)songs.getData(8), GUIPositionEnum.bottomRight,
             repr);
 
@@ -337,10 +333,8 @@ public class GUIMusicWindow {
         this.addSongText((Song)songs.getData(4), GUIPositionEnum.midCenter);
         this.addSongText((Song)songs.getData(5), GUIPositionEnum.midRight);
         this.addSongText((Song)songs.getData(6), GUIPositionEnum.bottomLeft);
-        this.addSongText((Song)songs.getData(7),
-            GUIPositionEnum.bottomCenter);
-        this.addSongText((Song)songs.getData(8),
-            GUIPositionEnum.bottomRight);
+        this.addSongText((Song)songs.getData(7), GUIPositionEnum.bottomCenter);
+        this.addSongText((Song)songs.getData(8), GUIPositionEnum.bottomRight);
 
     }
 
@@ -762,23 +756,36 @@ public class GUIMusicWindow {
 
 
     public void clickedArtist(Button button) {
+        this.window.removeAllShapes();
+        this.solver.insertionSort(1);
         songs = this.solver.getSongs();
-// songs.sort(); // add artist param
         this.updateGlyphs(currentRep);
     }
 
 
     public void clickedTitle(Button button) {
+        this.window.removeAllShapes();
+        this.solver.insertionSort(0);
+        songs = this.solver.getSongs();
+        this.updateGlyphs(currentRep);
 
     }
 
 
     public void clickedYear(Button button) {
+        this.window.removeAllShapes();
+        this.solver.insertionSort(3);
+        songs = this.solver.getSongs();
+        this.updateGlyphs(currentRep);
 
     }
 
 
     public void clickedGenre(Button button) {
+        this.window.removeAllShapes();
+        this.solver.insertionSort(2);
+        songs = this.solver.getSongs();
+        this.updateGlyphs(currentRep);
 
     }
 
