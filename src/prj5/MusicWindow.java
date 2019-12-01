@@ -1,15 +1,13 @@
-package prj5;
-
 /**
  * Virginia Tech Honor Code Pledge:
  * As a Hokie, I will conduct myself
  * with honor and integrity at all times.
  * I will not lie, cheat, or steal, nor
  * will I accept the actions of those who do.
- * 
- * @author Gautam Nair (g23)
- * @version 2019.11.19
  */
+
+package prj5;
+
 import CS2114.Window;
 import java.awt.*;
 import CS2114.WindowSide;
@@ -20,6 +18,13 @@ import CS2114.Command;
 import CS2114.Shape;
 import CS2114.TextShape;
 
+/**
+ * GUIMusicWindow
+ * 
+ * @author Gautam Nair (g23)
+ * @version 2019.11.19
+ */
+@SuppressWarnings("unused")
 public class GUIMusicWindow {
 
     public Window window;
@@ -37,6 +42,7 @@ public class GUIMusicWindow {
     private int page;
 
     private String currentRep;
+    @SuppressWarnings("rawtypes")
     private DLinkedSongs songs;
 
 
@@ -282,58 +288,58 @@ public class GUIMusicWindow {
 
         System.out.println("before add songs bars");
 
-        this.addLikeBars((Song<?>)songs.getData(0), GUIPositionEnum.topLeft,
+        this.addLikeBars((Song)songs.getData(0), GUIPositionEnum.topLeft,
             repr);
-        this.addLikeBars((Song<?>)songs.getData(1), GUIPositionEnum.topCenter,
+        this.addLikeBars((Song)songs.getData(1), GUIPositionEnum.topCenter,
             repr);
-        this.addLikeBars((Song<?>)songs.getData(2), GUIPositionEnum.topRight,
-            repr);
-
-        this.addLikeBars((Song<?>)songs.getData(3), GUIPositionEnum.midLeft,
-            repr);
-        this.addLikeBars((Song<?>)songs.getData(4), GUIPositionEnum.midCenter,
-            repr);
-        this.addLikeBars((Song<?>)songs.getData(5), GUIPositionEnum.midRight,
+        this.addLikeBars((Song)songs.getData(2), GUIPositionEnum.topRight,
             repr);
 
-        this.addLikeBars((Song<?>)songs.getData(6), GUIPositionEnum.bottomLeft,
+        this.addLikeBars((Song)songs.getData(3), GUIPositionEnum.midLeft,
             repr);
-        this.addLikeBars((Song<?>)songs.getData(7),
+        this.addLikeBars((Song)songs.getData(4), GUIPositionEnum.midCenter,
+            repr);
+        this.addLikeBars((Song)songs.getData(5), GUIPositionEnum.midRight,
+            repr);
+
+        this.addLikeBars((Song)songs.getData(6), GUIPositionEnum.bottomLeft,
+            repr);
+        this.addLikeBars((Song)songs.getData(7),
             GUIPositionEnum.bottomCenter, repr);
-        this.addLikeBars((Song<?>)songs.getData(8), GUIPositionEnum.bottomRight,
+        this.addLikeBars((Song)songs.getData(8), GUIPositionEnum.bottomRight,
             repr);
 
-        this.addHearBars((Song<?>)songs.getData(0), GUIPositionEnum.topLeft,
+        this.addHearBars((Song)songs.getData(0), GUIPositionEnum.topLeft,
             repr);
-        this.addHearBars((Song<?>)songs.getData(1), GUIPositionEnum.topCenter,
+        this.addHearBars((Song)songs.getData(1), GUIPositionEnum.topCenter,
             repr);
-        this.addHearBars((Song<?>)songs.getData(2), GUIPositionEnum.topRight,
-            repr);
-
-        this.addHearBars((Song<?>)songs.getData(3), GUIPositionEnum.midLeft,
-            repr);
-        this.addHearBars((Song<?>)songs.getData(4), GUIPositionEnum.midCenter,
-            repr);
-        this.addHearBars((Song<?>)songs.getData(5), GUIPositionEnum.midRight,
+        this.addHearBars((Song)songs.getData(2), GUIPositionEnum.topRight,
             repr);
 
-        this.addHearBars((Song<?>)songs.getData(6), GUIPositionEnum.bottomLeft,
+        this.addHearBars((Song)songs.getData(3), GUIPositionEnum.midLeft,
             repr);
-        this.addHearBars((Song<?>)songs.getData(7),
+        this.addHearBars((Song)songs.getData(4), GUIPositionEnum.midCenter,
+            repr);
+        this.addHearBars((Song)songs.getData(5), GUIPositionEnum.midRight,
+            repr);
+
+        this.addHearBars((Song)songs.getData(6), GUIPositionEnum.bottomLeft,
+            repr);
+        this.addHearBars((Song)songs.getData(7),
             GUIPositionEnum.bottomCenter, repr);
-        this.addHearBars((Song<?>)songs.getData(8), GUIPositionEnum.bottomRight,
+        this.addHearBars((Song)songs.getData(8), GUIPositionEnum.bottomRight,
             repr);
 
-        this.addSongText((Song<?>)songs.getData(0), GUIPositionEnum.topLeft);
-        this.addSongText((Song<?>)songs.getData(1), GUIPositionEnum.topCenter);
-        this.addSongText((Song<?>)songs.getData(2), GUIPositionEnum.topRight);
-        this.addSongText((Song<?>)songs.getData(3), GUIPositionEnum.midLeft);
-        this.addSongText((Song<?>)songs.getData(4), GUIPositionEnum.midCenter);
-        this.addSongText((Song<?>)songs.getData(5), GUIPositionEnum.midRight);
-        this.addSongText((Song<?>)songs.getData(6), GUIPositionEnum.bottomLeft);
-        this.addSongText((Song<?>)songs.getData(7),
+        this.addSongText((Song)songs.getData(0), GUIPositionEnum.topLeft);
+        this.addSongText((Song)songs.getData(1), GUIPositionEnum.topCenter);
+        this.addSongText((Song)songs.getData(2), GUIPositionEnum.topRight);
+        this.addSongText((Song)songs.getData(3), GUIPositionEnum.midLeft);
+        this.addSongText((Song)songs.getData(4), GUIPositionEnum.midCenter);
+        this.addSongText((Song)songs.getData(5), GUIPositionEnum.midRight);
+        this.addSongText((Song)songs.getData(6), GUIPositionEnum.bottomLeft);
+        this.addSongText((Song)songs.getData(7),
             GUIPositionEnum.bottomCenter);
-        this.addSongText((Song<?>)songs.getData(8),
+        this.addSongText((Song)songs.getData(8),
             GUIPositionEnum.bottomRight);
 
     }
@@ -371,7 +377,7 @@ public class GUIMusicWindow {
      *            the type of representation
      */
     private void addHearBars(Song s, GUIPositionEnum pos, String repr) {
-        Glyph glyph = new Glyph(s, repr, pos);
+        GUIGlyph glyph = new GUIGlyph(s, repr, pos);
         Shape[] bars = glyph.getBars();
         switch (pos) {
             case bottomCenter:
@@ -512,8 +518,8 @@ public class GUIMusicWindow {
     }
 
 
-    private void addLikeBars(Song<?> song, GUIPositionEnum pos, String repr) {
-        Glyph glyph = new Glyph(song, repr, pos);
+    private void addLikeBars(Song song, GUIPositionEnum pos, String repr) {
+        GUIGlyph glyph = new GUIGlyph(song, repr, pos);
         Shape[] bars = glyph.getBars();
         switch (pos) {
             case bottomCenter:
@@ -616,8 +622,8 @@ public class GUIMusicWindow {
     }
 
 
-    private void addSongText(Song<?> song, GUIPositionEnum pos) {
-        String name = song.getName();
+    private void addSongText(Song song, GUIPositionEnum pos) {
+        String name = song.getTitle();
         String artist = song.getArtist();
         TextShape nameText = null;
         TextShape artistText = null;
