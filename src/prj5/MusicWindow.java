@@ -42,6 +42,7 @@ public class GUIMusicWindow {
     private int page;
 
     private String currentRep;
+
     @SuppressWarnings("rawtypes")
     private DLinkedSongs songs;
 
@@ -54,6 +55,7 @@ public class GUIMusicWindow {
      */
     public GUIMusicWindow(Solver solve) {
         window = new Window();
+
         page = 1;
         window.setTitle("Project 5");
         this.buttonArray = new Button[10];
@@ -89,6 +91,8 @@ public class GUIMusicWindow {
         buttonArray[7] = majorButton;
         buttonArray[8] = regionButton;
         buttonArray[9] = quitButton;
+        buttonArray[0].disable();
+        buttonArray[5].disable();
 
         for (int i = 0; i < 10; i++) {
             if (i < 6) {
@@ -221,14 +225,18 @@ public class GUIMusicWindow {
      */
     public void updateGlyphs(String repr) {
         currentRep = repr;
-        if (page == 1)
-        {
+        if (page == 1) {
             buttonArray[0].disable();
         }
-        
-        if (page == this.songs.size() / 9 + 1)
-        {
+        else {
+            buttonArray[0].enable();
+        }
+
+        if (page == this.songs.size() / 9 + 1) {
             buttonArray[5].disable();
+        }
+        else {
+            buttonArray[5].enable();
         }
         // BARS IN GLYPHS
         Shape tl = new Shape(window.getGraphPanelWidth() * 15 / 100, window
@@ -261,71 +269,97 @@ public class GUIMusicWindow {
             .getGraphPanelHeight() * 4 / 5, 5, 40, Color.BLACK);
         window.addShape(br);
 
-
-        System.out.println("before add songs bars");
-        
-        addStuff(repr, page); 
-
-        
+        addStuff(repr, page);
 
     }
-    
+
+
     /**
      * adds like bars, hear bars and text boxes
-     * @param repr of window
-     * @param page number
+     * 
+     * @param repr
+     *            of window
+     * @param page
+     *            number
      */
-    public void addStuff(String repr, int page)
-    {
+    public void addStuff(String repr, int page) {
         int pager = 9 * page - 1;
-        
-        this.addLikeBars((Song)songs.getData(pager - 8), GUIPositionEnum.topLeft, repr);
-        this.addLikeBars((Song)songs.getData(pager - 7), GUIPositionEnum.topCenter,
-            repr);
-        this.addLikeBars((Song)songs.getData(pager - 6), GUIPositionEnum.topRight,
-            repr);
+        if (page < songs.size() / 9 + 1) {
+            this.addLikeBars((Song)songs.getData(pager - 8),
+                GUIPositionEnum.topLeft, repr);
+            this.addLikeBars((Song)songs.getData(pager - 7),
+                GUIPositionEnum.topCenter, repr);
+            this.addLikeBars((Song)songs.getData(pager - 6),
+                GUIPositionEnum.topRight, repr);
 
-        this.addLikeBars((Song)songs.getData(pager - 5), GUIPositionEnum.midLeft, repr);
-        this.addLikeBars((Song)songs.getData(pager - 4), GUIPositionEnum.midCenter,
-            repr);
-        this.addLikeBars((Song)songs.getData(pager - 3), GUIPositionEnum.midRight,
-            repr);
+            this.addLikeBars((Song)songs.getData(pager - 5),
+                GUIPositionEnum.midLeft, repr);
+            this.addLikeBars((Song)songs.getData(pager - 4),
+                GUIPositionEnum.midCenter, repr);
+            this.addLikeBars((Song)songs.getData(pager - 3),
+                GUIPositionEnum.midRight, repr);
 
-        this.addLikeBars((Song)songs.getData(pager - 2), GUIPositionEnum.bottomLeft,
-            repr);
-        this.addLikeBars((Song)songs.getData(pager - 1), GUIPositionEnum.bottomCenter,
-            repr);
-        this.addLikeBars((Song)songs.getData(pager), GUIPositionEnum.bottomRight,
-            repr);
+            this.addLikeBars((Song)songs.getData(pager - 2),
+                GUIPositionEnum.bottomLeft, repr);
+            this.addLikeBars((Song)songs.getData(pager - 1),
+                GUIPositionEnum.bottomCenter, repr);
+            this.addLikeBars((Song)songs.getData(pager),
+                GUIPositionEnum.bottomRight, repr);
 
-        this.addHearBars((Song)songs.getData(pager - 8), GUIPositionEnum.topLeft, repr);
-        this.addHearBars((Song)songs.getData(pager - 7), GUIPositionEnum.topCenter,
-            repr);
-        this.addHearBars((Song)songs.getData(pager - 6), GUIPositionEnum.topRight,
-            repr);
+            this.addHearBars((Song)songs.getData(pager - 8),
+                GUIPositionEnum.topLeft, repr);
+            this.addHearBars((Song)songs.getData(pager - 7),
+                GUIPositionEnum.topCenter, repr);
+            this.addHearBars((Song)songs.getData(pager - 6),
+                GUIPositionEnum.topRight, repr);
 
-        this.addHearBars((Song)songs.getData(pager - 5), GUIPositionEnum.midLeft, repr);
-        this.addHearBars((Song)songs.getData(pager - 4), GUIPositionEnum.midCenter,
-            repr);
-        this.addHearBars((Song)songs.getData(pager - 3), GUIPositionEnum.midRight,
-            repr);
+            this.addHearBars((Song)songs.getData(pager - 5),
+                GUIPositionEnum.midLeft, repr);
+            this.addHearBars((Song)songs.getData(pager - 4),
+                GUIPositionEnum.midCenter, repr);
+            this.addHearBars((Song)songs.getData(pager - 3),
+                GUIPositionEnum.midRight, repr);
 
-        this.addHearBars((Song)songs.getData(pager - 2), GUIPositionEnum.bottomLeft,
-            repr);
-        this.addHearBars((Song)songs.getData(pager - 1), GUIPositionEnum.bottomCenter,
-            repr);
-        this.addHearBars((Song)songs.getData(pager), GUIPositionEnum.bottomRight,
-            repr);
+            this.addHearBars((Song)songs.getData(pager - 2),
+                GUIPositionEnum.bottomLeft, repr);
+            this.addHearBars((Song)songs.getData(pager - 1),
+                GUIPositionEnum.bottomCenter, repr);
+            this.addHearBars((Song)songs.getData(pager),
+                GUIPositionEnum.bottomRight, repr);
 
-        this.addSongText((Song)songs.getData(pager - 8), GUIPositionEnum.topLeft);
-        this.addSongText((Song)songs.getData(pager - 7), GUIPositionEnum.topCenter);
-        this.addSongText((Song)songs.getData(pager - 6), GUIPositionEnum.topRight);
-        this.addSongText((Song)songs.getData(pager - 5), GUIPositionEnum.midLeft);
-        this.addSongText((Song)songs.getData(pager - 4), GUIPositionEnum.midCenter);
-        this.addSongText((Song)songs.getData(pager - 3), GUIPositionEnum.midRight);
-        this.addSongText((Song)songs.getData(pager - 2), GUIPositionEnum.bottomLeft);
-        this.addSongText((Song)songs.getData(pager - 1), GUIPositionEnum.bottomCenter);
-        this.addSongText((Song)songs.getData(pager), GUIPositionEnum.bottomRight);
+            this.addSongText((Song)songs.getData(pager - 8),
+                GUIPositionEnum.topLeft);
+            this.addSongText((Song)songs.getData(pager - 7),
+                GUIPositionEnum.topCenter);
+            this.addSongText((Song)songs.getData(pager - 6),
+                GUIPositionEnum.topRight);
+            this.addSongText((Song)songs.getData(pager - 5),
+                GUIPositionEnum.midLeft);
+            this.addSongText((Song)songs.getData(pager - 4),
+                GUIPositionEnum.midCenter);
+            this.addSongText((Song)songs.getData(pager - 3),
+                GUIPositionEnum.midRight);
+            this.addSongText((Song)songs.getData(pager - 2),
+                GUIPositionEnum.bottomLeft);
+            this.addSongText((Song)songs.getData(pager - 1),
+                GUIPositionEnum.bottomCenter);
+            this.addSongText((Song)songs.getData(pager),
+                GUIPositionEnum.bottomRight);
+        }
+        else {
+
+            int currIndex = songs.size() - (songs.size() % 9);
+            for (GUIPositionEnum en : GUIPositionEnum.values()) {
+                if (currIndex <= songs.size() - 1) {
+                    this.addHearBars((Song)songs.getData(currIndex), en, repr);
+                    this.addLikeBars((Song)songs.getData(currIndex), en, repr);
+                    this.addSongText((Song)songs.getData(currIndex), en);
+                }
+                currIndex++;
+            }
+
+        }
+
     }
 
 
@@ -336,6 +370,7 @@ public class GUIMusicWindow {
      *            tag
      */
     public void clickedNext(Button button) {
+        page++;
         window.removeAllShapes();
         this.updateLegend(currentRep);
         this.updateGlyphs(currentRep);
@@ -349,8 +384,12 @@ public class GUIMusicWindow {
      *            tag
      */
     public void clickedPrevious(Button button) {
-
+        page--;
+        window.removeAllShapes();
+        this.updateLegend(currentRep);
+        this.updateGlyphs(currentRep);
     }
+
 
     /**
      * add the hear bars
@@ -506,9 +545,13 @@ public class GUIMusicWindow {
 
     /**
      * add the like bars for each song
-     * @param song to add for 
-     * @param pos of the glyph
-     * @param repr of the window
+     * 
+     * @param song
+     *            to add for
+     * @param pos
+     *            of the glyph
+     * @param repr
+     *            of the window
      */
     private void addLikeBars(Song song, GUIPositionEnum pos, String repr) {
         GUIGlyph glyph = new GUIGlyph(song, repr, pos);
@@ -613,11 +656,16 @@ public class GUIMusicWindow {
         window.addShape(bars[7]);
     }
 
+
     /**
      * add the textbox for each song
-     * @param song to add for 
-     * @param pos of the glyph
-     * @param repr of the window
+     * 
+     * @param song
+     *            to add for
+     * @param pos
+     *            of the glyph
+     * @param repr
+     *            of the window
      */
     private void addSongText(Song song, GUIPositionEnum pos) {
         String name = song.getTitle();
@@ -739,7 +787,9 @@ public class GUIMusicWindow {
 
     /**
      * clicked the hobby button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedHobby(Button button) {
         window.removeAllShapes();
@@ -750,7 +800,9 @@ public class GUIMusicWindow {
 
     /**
      * clicked the major button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedMajor(Button button) {
         window.removeAllShapes();
@@ -761,7 +813,9 @@ public class GUIMusicWindow {
 
     /**
      * clicked the region button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedRegion(Button button) {
         window.removeAllShapes();
@@ -772,10 +826,12 @@ public class GUIMusicWindow {
 
     /**
      * clicked the artist button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedArtist(Button button) {
-        
+
         this.window.removeAllShapes();
         this.solver.insertionSort(1);
         songs = this.solver.getSongs();
@@ -783,9 +839,12 @@ public class GUIMusicWindow {
         this.updateGlyphs(currentRep);
     }
 
+
     /**
      * clicked the title button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedTitle(Button button) {
         this.window.removeAllShapes();
@@ -799,7 +858,9 @@ public class GUIMusicWindow {
 
     /**
      * clicked the year button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedYear(Button button) {
         this.window.removeAllShapes();
@@ -813,7 +874,9 @@ public class GUIMusicWindow {
 
     /**
      * clicked the genre button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedGenre(Button button) {
         this.window.removeAllShapes();
@@ -827,7 +890,9 @@ public class GUIMusicWindow {
 
     /**
      * clicked the quit button
-     * @param button pressed
+     * 
+     * @param button
+     *            pressed
      */
     public void clickedQuit(Button button) {
         System.exit(0);
